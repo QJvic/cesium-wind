@@ -1,0 +1,19 @@
+{
+  "name": "cesium-wind",
+  "version": "1.0.0",
+  "description": "wind layer of cesium",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cesium",
+    "wind",
+    "gis"
+  ],
+  "author": "joe",
+  "license": "MIT",
+  "dependencies": {
+    "wind-core": "^1.0.0-alpha.10"
+  }
+}
