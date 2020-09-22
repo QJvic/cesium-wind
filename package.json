@@ -2,7 +2,20 @@
   "name": "cesium-wind",
   "version": "1.0.0",
   "description": "wind layer of cesium",
-  "main": "index.js",
+  "main": "dist/cesium-wind.js",
+  "unpkg": "dist/cesium-wind.js",
+  "module": "dist/cesium-wind.esm.js",
+  "commonjs": "dist/cesium-wind.cjs.js",
+  "files": [
+    "dist",
+    "examples",
+    "src",
+    ".gitignore",
+    "LICENSE",
+    "package.json",
+    "README.md",
+    "rollup.config.js"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "rollup -c -w",
@@ -25,6 +38,6 @@
     "rollup-plugin-node-resolve": "^5.2.0"
   },
   "peerDependencies": {
-    "cesium": "^1.73.0"
+    "cesium": ">1.53.0"
   }
 }
