@@ -3,11 +3,10 @@ import WindCore, {assign, defaultOptions, Field, formatData, isArray, removeDomN
 
 class CesiumWind {
   constructor(data, options = {}) {
-    this.canvas = null;  // 风场图canvas
-    this.wind = null;   // windCore实例
-    this.field = null;  // 格式化后的数据
-    this.viewer = null; // cesium实例
-
+    this.canvas = null;
+    this.wind = null;
+    this.field = null;
+    this.viewer = null;
     this.options = assign({}, options);
     this.pickWindOptions();
 
