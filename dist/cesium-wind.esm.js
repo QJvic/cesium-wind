@@ -1,7 +1,7 @@
 /*!
  * author: joe <qj5657@gmail.com>
- * cesium-wind 1.0.1
- * build-time: 2020-9-23 10:15
+ * cesium-wind 1.0.2
+ * build-time: 2020-9-23 10:21
  * LICENSE: MIT
  * (c) 2020-2020 https://github.com/QJvic/cesium-wind
  */
