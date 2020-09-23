@@ -25,10 +25,6 @@
 <script src="../dist/cesium-wind.js"></script>
 <script>
   const windOptions = {
-    // colorScale: (m) => {
-    //   // console.log(m);
-    //   return '#fff';
-    // },
     colorScale: [
       'rgb(36,104, 180)',
       'rgb(60,157, 194)',
@@ -46,27 +42,20 @@
       'rgb(220,24,32)',
       'rgb(180,0,35)',
     ],
-    // velocityScale: 1 / 20,
-    // paths: 5000,
     frameRate: 16,
     maxAge: 60,
     globalAlpha: 0.9,
     velocityScale: 1 / 30,
-    paths: 2000,
-    // paths: () => { // can be number or function
-    //   const zoom = map.getZoom();
-    //   return zoom * 1000;
-    // },
+    paths: 2000
   };
 
 
   var viewer = new Cesium.Viewer('map');
 
-  fetch('https://sakitam-fdd.github.io/wind-layer/data/wind.json')
+  fetch('./wind.json')
     .then(res => res.json())
     .then(res => {
       const windLayer = new CesiumWind.WindLayer(res, {windOptions});
-      console.log(windLayer)
       windLayer.addTo(viewer);
       window.windLayer = windLayer;
     });
