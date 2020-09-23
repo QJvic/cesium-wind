@@ -57,7 +57,6 @@
     .then(res => {
       const windLayer = new CesiumWind.WindLayer(res, {windOptions});
       windLayer.addTo(viewer);
-      window.windLayer = windLayer;
     });
 
 </script>

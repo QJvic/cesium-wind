@@ -1,5 +1,7 @@
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import sourcemaps from 'rollup-plugin-sourcemaps';
+
 const pkg = require(`./package.json`);
 
 const time = new Date();
@@ -18,7 +20,8 @@ export default {
     {
       file: "dist/cesium-wind.esm.js",
       format: "esm",
-      banner
+      banner,
+      sourcemap: true
     },
     {
       file: "dist/cesium-wind.js",
@@ -29,7 +32,8 @@ export default {
     {
       file: "dist/cesium-wind.cjs.js",
       format: "cjs",
-      banner
+      banner,
+      sourcemap: true
     }
   ],
   plugins: [
@@ -38,6 +42,7 @@ export default {
       main: true,
       browser: true
     }),
-    commonjs()
+    commonjs(),
+    sourcemaps()
   ],
 };
