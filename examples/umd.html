@@ -1,65 +1,65 @@
 <!DOCTYPE html>
 <html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>cesium wind</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.73.0/Build/Cesium/Widgets/widgets.css">
-<style type="text/css">
-  html, body {
-    margin: 0;
-    height: 100%;
-    width: 100%
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>cesium wind</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/cesium@1.131.0/Build/Cesium/Widgets/widgets.css"
+  />
+  <style type="text/css">
+    html,
+    body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
 
-  .container {
-    width: 100%;
-    height: 100%
-  }
+    .container {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 
-</style>
+  <body>
+    <div id="map" class="container"></div>
 
-<body>
-<div id="map" class="container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/cesium@1.131.0/Build/Cesium/Cesium.js"></script>
+    <script src="../dist/cesium-wind.js"></script>
+    <script>
+      const windOptions = {
+        colorScale: [
+          "rgb(36,104, 180)",
+          "rgb(60,157, 194)",
+          "rgb(128,205,193 )",
+          "rgb(151,218,168 )",
+          "rgb(198,231,181)",
+          "rgb(238,247,217)",
+          "rgb(255,238,159)",
+          "rgb(252,217,125)",
+          "rgb(255,182,100)",
+          "rgb(252,150,75)",
+          "rgb(250,112,52)",
+          "rgb(245,64,32)",
+          "rgb(237,45,28)",
+          "rgb(220,24,32)",
+          "rgb(180,0,35)",
+        ],
+        frameRate: 16,
+        maxAge: 60,
+        globalAlpha: 0.9,
+        velocityScale: 1 / 30,
+        paths: 2000,
+      };
 
-<script src="https://cdn.jsdelivr.net/npm/cesium@1.73.0/Build/Cesium/Cesium.js"></script>
-<script src="../dist/cesium-wind.js"></script>
-<script>
-  const windOptions = {
-    colorScale: [
-      'rgb(36,104, 180)',
-      'rgb(60,157, 194)',
-      'rgb(128,205,193 )',
-      'rgb(151,218,168 )',
-      'rgb(198,231,181)',
-      'rgb(238,247,217)',
-      'rgb(255,238,159)',
-      'rgb(252,217,125)',
-      'rgb(255,182,100)',
-      'rgb(252,150,75)',
-      'rgb(250,112,52)',
-      'rgb(245,64,32)',
-      'rgb(237,45,28)',
-      'rgb(220,24,32)',
-      'rgb(180,0,35)',
-    ],
-    frameRate: 16,
-    maxAge: 60,
-    globalAlpha: 0.9,
-    velocityScale: 1 / 30,
-    paths: 2000
-  };
+      var viewer = new Cesium.Viewer("map");
 
-
-  var viewer = new Cesium.Viewer('map');
-
-  fetch('./wind.json')
-    .then(res => res.json())
-    .then(res => {
-      const windLayer = new CesiumWind.WindLayer(res, {windOptions});
-      windLayer.addTo(viewer);
-    });
-
-</script>
-
-</body>
+      fetch("./wind.json")
+        .then((res) => res.json())
+        .then((res) => {
+          const windLayer = new CesiumWind.WindLayer(res, { windOptions });
+          windLayer.addTo(viewer);
+        });
+    </script>
+  </body>
 </html>
