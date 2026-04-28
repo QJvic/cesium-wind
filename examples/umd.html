@@ -19,10 +19,39 @@
       width: 100%;
       height: 100%;
     }
+
+    .toolbar {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 1;
+    }
+
+    .toolbar button {
+      min-width: 88px;
+      height: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      border-radius: 4px;
+      color: #fff;
+      background: rgba(24, 32, 40, 0.82);
+      cursor: pointer;
+    }
+
+    .toolbar button:disabled {
+      cursor: default;
+      opacity: 0.55;
+    }
+
+    .toolbar button.is-stopped {
+      background: rgba(36, 104, 180, 0.88);
+    }
   </style>
 
   <body>
     <div id="map" class="container"></div>
+    <div class="toolbar">
+      <button id="stop-toggle" type="button" disabled>Stop</button>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/cesium@1.131.0/Build/Cesium/Cesium.js"></script>
     <script src="../dist/cesium-wind.js"></script>
@@ -53,12 +82,32 @@
       };
 
       var viewer = new Cesium.Viewer("map");
+      var windLayer;
+      var windStopped = false;
+      var stopToggle = document.getElementById("stop-toggle");
+
+      stopToggle.addEventListener("click", () => {
+        if (!windLayer || !windLayer.wind) {
+          return;
+        }
+
+        windStopped = !windStopped;
+        if (windStopped) {
+          windLayer.wind.stop();
+        } else {
+          windLayer.wind.start();
+        }
+
+        stopToggle.textContent = windStopped ? "Start" : "Stop";
+        stopToggle.classList.toggle("is-stopped", windStopped);
+      });
 
       fetch("./wind.json")
         .then((res) => res.json())
         .then((res) => {
-          const windLayer = new CesiumWind.WindLayer(res, { windOptions });
+          windLayer = new CesiumWind.WindLayer(res, { windOptions });
           windLayer.addTo(viewer);
+          stopToggle.disabled = false;
         });
     </script>
   </body>
