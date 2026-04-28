@@ -1,6 +1,6 @@
 {
   "name": "cesium-wind",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "wind layer of cesium",
   "main": "dist/cesium-wind.js",
   "unpkg": "dist/cesium-wind.js",
